@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
             <div class="container">
                 <a id='whiteLogo' href="/" class="custom-logo-link" rel="home" aria-current="page"><img width="120px"  src="{{asset('assets/images/logoW.png ')}}" class="custom-logo" alt="اسلام ايوب"  sizes="(max-width: 917px) 100vw, 917px"></a>
-                <a id='blueLogo' class="d-none" href="/" class="custom-logo-link" rel="home" aria-current="page"><img width="120px"  src="{{asset('assets/images/logoB.png')}}" class="custom-logo" alt="اسلم أيوب"  sizes="(max-width: 917px) 100vw, 917px"></a>
+                <a id='blueLogo' class="d-none" href="/" class="custom-logo-link" rel="home" aria-current="page"><img width="120px"  src="{{asset('/storage/'.setting('site.logo'))}}" class="custom-logo" alt="اسلم أيوب"  sizes="(max-width: 917px) 100vw, 917px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,8 +63,8 @@
         </nav>
         <div class="content">
             <div class="text-center">
-                <h1 class="header_content_title">  أهلا بك في موقع إسلام أيوب  </h1>
-                <p class="header_content_desc"> هدفي هو ان اسخر كل خبراتي في تطوير وتقديم خدمات التصميم الجرافيكي بجودة عالية وفاخرة تساعد رواد الأعمال واصحاب المشاريع على بناء علامتهم التجارية ، كمان اساهم في تقديم الدروس التعليمية للمهتمين بمجال التصميم الجرافيكي بكل شغف وحب . </p>
+                <h1 class="header_content_title"> {{ setting('site.title') }} </h1>
+                <p class="header_content_desc">{{ setting('site.description') }} </p>
             </div>
         </div>
     </div>
@@ -80,12 +80,12 @@
                 <div class="about-border m-auto">
 
                     <div class="about-image  position-relative">
-                        <img src="{{asset('assets/images/profile.jpg ')}}" class="h-100 w-100 img-fluid">
+                        <img src="{{asset('/storage/'.setting('site.section_b_image'))}}" class="h-100 w-100 img-fluid">
                         <div class="layout2 w-100 h-100 d-flex justify-content-center align-items-center">
-                            <i class="fa fa-facebook icon text-white"></i>
-                            <i class="fa fa-google   icon text-white"></i>
-                            <i class="fa fa-linkedin icon text-white"></i>
-                            <i class="fa fa-twitter  icon text-white"></i>
+                        <a href="{{setting('site.footer_facebook')}}">    <i class="fa fa-facebook icon text-white"></i> </a>
+                        <a href="setting('site.footer_google')">     <i class="fa fa-google   icon text-white"></i>  </a>
+                        <a href="{{setting('site.footer_linkedin')}}">     <i class="fa fa-linkedin icon text-white"></i>  </a>
+                        <a href="setting('site.footer_tweter')">     <i class="fa fa-twitter  icon text-white"></i>  </a>
                         </div>
                     </div>
 
@@ -93,11 +93,11 @@
             </div>
 
             <div class="col-md-7 col-sm-12 pl-4 mt-1 pt-3">
-                <h1 class="mb-3 font-weight-bold"> <span class="I">إسلام أيوب</span></h1>
+                <h1 class="mb-3 font-weight-bold"> <span class="I">{{setting('site.section_b_name')}}</span></h1>
 
 
                 <div id="typed-strings" class="d-none">
-                    <p>نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة  نبذة مختصرة</p>
+                        <p> {{setting('site.section_b_description')}} </p>
                 </div>
                 <span class="text-muted mb-3 I summary" id="typed"></span>
 
@@ -106,26 +106,28 @@
 
                     <div class="col-md-6 col-sm-12 text-left">
                         <p class="font-weight-bold I"> الإسم :
-                            <span class="font-weight-light text-muted"> إسلام أيوب </span></p>
+                            <span class="font-weight-light text-muted"> {{setting('site.section_b_name')}} </span></p>
                         <p class="font-weight-bold I"> السن :
-                            <span class="font-weight-light text-muted"> 27 عام </span></p>
+                            <span class="font-weight-light text-muted"> {{setting('site.section_b_age')}}عام </span></p>
                         <p class="font-weight-bold I"> العمل الحر :
-                            <span class="font-weight-light text-muted"> متاح </span></p>
+                            <span class="font-weight-light text-muted"> {{setting('site.section_b_freelance')}} </span></p>
                     </div>
 
                     <div class="col-md-6 col-sm-12 text-left">
                         <p class="font-weight-bold I"> الوظيفة :
-                            <span class="font-weight-light text-muted">  مصمم جرافيك </span></p>
+                            <span class="font-weight-light text-muted">  {{setting('site.section_b_job')}}</span></p>
                         <p class="font-weight-bold I"> الموقع :
-                            <span class="font-weight-light text-muted">  المملكة العربية المتحدة </span></p>
+                            <span class="font-weight-light text-muted">  {{setting('site.section_b_country')}} </span></p>
                         <p class="font-weight-bold I"> البريد الإلكتروني :
-                            <span class="font-weight-light text-muted"> Eslam@gmail.com </span></p>
+                            <span class="font-weight-light text-muted"> {{setting('site.section_b_email')}}</span></p>
                     </div>
 
                 </div>
 
                 <div class="row justify-content-center">
-                    <button class="btn  text-white p-2 m-2"> تحميل السيرة الذاتيه <i class="fa fa-download ml-1"></i></button>
+                    <a hred="{{  asset(setting('site.section_b_cv')   )  }}" download> 
+                        <button class="btn  text-white p-2 m-2"> تحميل السيرة الذاتيه <i class="fa fa-download ml-1"></i></button>
+                    </a>
                 </div>
             </div>
 

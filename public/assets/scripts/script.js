@@ -94,6 +94,7 @@ $(document).ready(function(){
 
  // function to open project modal
  var openViewModal = (video,images,url) =>{
+    
     $('.projectVideoContainer,.projectImagesContainer,.projectUrlContainer').addClass('d-none');
     $('body').css('overflow','hidden');
     if(video!==''){
@@ -104,15 +105,29 @@ $(document).ready(function(){
         $('.projectImagesContainer').removeClass('d-none');
       
 
-        console.log(images);
+    
         
         let imagesArray = JSON.parse(images);
 
-        // let imagesTemp=''
-        // imagesArray.forEach(element => {
-        //     imagesTemp += `div class="projectImage"> <img src="${element}" alt="picture 1" class="img-fluid"></div>`;
-        // });
-        // $('.projectImagesContainer .owl-carousel').html(imagesTemp);
+       let imagesTemp = '';
+        imagesArray.forEach(element => {
+        
+            let image = 'storage/'+element.image;
+            imagesTemp += `<div class=".projectImage"> <img src="${image}" alt="picture 1" class="img-fluid"   > </div> `;
+            
+        });
+        $('.projectImagesContainer .owl-carousel .projectImage ').html(imagesTemp);
+        console.log($('.projectImagesContainer .owl-carousel .projectImage').html());
+            // imagesTemp += `<div class=""><img src="${image}" alt="picture 1" class="img-fluid"></div>`;
+
+
+
+       
+
+
+    
+
+        
     }
     if(url!=='null'){
         $('.projectUrlContainer').removeClass('d-none');
