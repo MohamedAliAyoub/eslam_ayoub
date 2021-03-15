@@ -20,7 +20,7 @@
 <!-- Loader -->
 <section class="loader">
     <video autoplay muted loop autobuffer playsinline id="header_Video" class="w-100 h-75" style="position: relative;">
-        <source src="{{asset('/storage/'.setting('site.section_a_vedio'))}}" type="video/mp4">
+        <source src="{{asset('assets/videos/loader.mp4 ')}}" type="video/mp4">
     </video>
 </section>
 
