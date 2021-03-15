@@ -28,7 +28,7 @@
 <section class="header" id="header" style="overflow: hidden;height: 100vh;position: relative;">
     <!-- Header Video -->
     <video autoplay muted loop autobuffer playsinline id="header_Video" class="w-100">
-        <source src="{{asset('assets/videos/barah-iphone.mp4 ')}}" type="video/mp4">
+        <source src="{{asset('/storage/'.$video)}}" type="video/mp4">
     </video>
     <!-- Header Content-->
     <div class="header_content">
@@ -91,9 +91,9 @@
                     <div class="about-image  position-relative">
                         <img src="{{asset('/storage/'.setting('site.section_b_image'))}}" class="h-100 w-100 img-fluid">
                         <div class="layout2 w-100 h-100 d-flex justify-content-center align-items-center">
-                            <a href="{{setting('site.footer_facebook')}}"> <i
-                                    class="fa fa-facebook icon text-white"></i> </a>
-                            <a href="setting('site.footer_google')"> <i class="fa fa-google   icon text-white"></i> </a>
+                            <a href="{{setting('site.whatsapp')}}"> <i
+                                    class="fa fa-whatsapp icon text-white"></i> </a>
+                            <a href="setting('site.behance')"> <i class="fa fa-behance   icon text-white"></i> </a>
                             <a href="{{setting('site.footer_linkedin')}}"> <i
                                     class="fa fa-linkedin icon text-white"></i> </a>
                             <a href="setting('site.footer_tweter')"> <i class="fa fa-twitter  icon text-white"></i> </a>
@@ -175,33 +175,33 @@
 </section>
 
 <!-- Section numbers -->
-<!-- <section class="numbers py-lg-5 py-1">
-    <div class="container">
-        <div class="row mx-auto justify-content-around align-items-center numbersContainer">
+<!--<section class="numbers py-lg-5 py-1">-->
+<!--    <div class="container">-->
+<!--        <div class="row mx-auto justify-content-around align-items-center numbersContainer">-->
 
-            <div class="col-6 col-lg-3   text-center my-3 my-md-0">
-                <h4 class="numberTitle">جهة و مشروع</h4>
-                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>
-            </div>
+<!--            <div class="col-6 col-lg-3   text-center my-3 my-md-0">-->
+<!--                <h4 class="numberTitle">جهة و مشروع</h4>-->
+<!--                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>-->
+<!--            </div>-->
 
-            <div class="col-6 col-lg-3 text-center my-3 my-md-0">
-                <h4 class="numberTitle">متدرب و متدربة</h4>
-                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>
-            </div>
+<!--            <div class="col-6 col-lg-3 text-center my-3 my-md-0">-->
+<!--                <h4 class="numberTitle">متدرب و متدربة</h4>-->
+<!--                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>-->
+<!--            </div>-->
 
-            <div class="col-6 col-lg-3  text-center my-3 my-md-0">
-                <h4 class="numberTitle">ساعة تدريبية</h4>
-                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>
-            </div>
+<!--            <div class="col-6 col-lg-3  text-center my-3 my-md-0">-->
+<!--                <h4 class="numberTitle">ساعة تدريبية</h4>-->
+<!--                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>-->
+<!--            </div>-->
 
-            <div class="col-6 col-lg-3  text-center my-3 my-md-0">
-                <h4 class="numberTitle">سنوات الخبرة</h4>
-                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>
-            </div>
+<!--            <div class="col-6 col-lg-3  text-center my-3 my-md-0">-->
+<!--                <h4 class="numberTitle">سنوات الخبرة</h4>-->
+<!--                <h2 class="numberValue"><span class="countfect" data-num="1200"></span></h2>-->
+<!--            </div>-->
 
-        </div>
-    </div>
-</section> -->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
 <!-- Section Projects -->
 <section class="projects py-5" id='projects'>
@@ -229,8 +229,13 @@
                             <div class="image position-relative overflow-hidden text-center"
                                  data-itemId="{{ $item->id }}">
 
-                                <img src="{{asset('storage/'.$item->images[0]->image)}}" alt="picture 1"
+                              @if(isset($item->images[0]->image ))
+                                <img src="{{asset('storage/'.$item->images[0]->image) }}" alt="picture 1"
                                      class="img-fluid">
+                            @else
+                            <img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
+                                     class="img-fluid">
+                            @endif
 
                                 <div class="img-card p-2 text-center w-75 m-auto position-absolute">
                                     <h6 class="font-weight-bold"> {{ $item->name }} </h6>
@@ -343,19 +348,25 @@
         <div class="row justify-content-between align-items-center text-center">
 
             <div class="col-md-3 col-12">
-                <i class="fa fa-facebook icon text-white"></i>
-                <i class="fa fa-google   icon text-white"></i>
-                <i class="fa fa-linkedin icon text-white"></i>
-                <i class="fa fa-twitter  icon text-white"></i>
+                 <a href="{{setting('site.whatsapp')}}"> <i
+                                    class="fa fa-whatsapp icon text-white"></i> </a>
+                            <a href="setting('site.behance')"> <i class="fa fa-behance   icon text-white"></i> </a>
+                            <a href="{{setting('site.footer_linkedin')}}"> <i
+                                    class="fa fa-linkedin icon text-white"></i> </a>
+                            <a href="setting('site.footer_tweter')"> <i class="fa fa-twitter  icon text-white"></i> </a>
             </div>
+            
+            
+            
 
             <div class="col-md-3 col-12">
-                <h6 class="text-white"> تم التصميم بواسطة <a href="http://www.kareem-mostafa.com/" class="designer">
+                <h6 class="text-white"> تم 
+                التصميم بواسطة <a href="http://eslamayoub.com/public/" class="designer">
                         اسلام ايوب </a></h6>
             </div>
 
             <div class="col-md-3 col-12">
-                <h6 class="text-white"> © 2021 براءة. كل الحقوق محفوظة. </h6>
+                <h6 class="text-white"> © 2021 اسلام ايوب. كل الحقوق محفوظة. </h6>
             </div>
 
         </div>
