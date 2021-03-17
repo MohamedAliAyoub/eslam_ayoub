@@ -102,6 +102,19 @@ $(document).ready(function () {
     }, 5000);
 });
 
+
+function htmlEncode(html) {
+    if (html === undefined || html === null || html.length === 0)
+        return html;
+    return html.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
+
+function htmlDecode(html) {
+    if (html === undefined || html === null || html.length === 0)
+        return html;
+    return html.replace("&amp;", /&/g).replace("&gt;", />/g).replace("&lt;", /</g).replace("&quot;", /"/g);
+}
+
 // function to open project modal
 var openViewModal = (video, images, url) => {
     $('.projectVideoContainer,.projectImagesContainer,.projectUrlContainer').addClass('d-none');
@@ -112,7 +125,7 @@ var openViewModal = (video, images, url) => {
     }
     if (images !== '') {
         $('.projectImagesContainer').removeClass('d-none');
-
+        images = (htmlDecode(images).replaceAll('\\\\', '\\').replaceAll('\\', '\\\\'));
         let imagesArray = JSON.parse(images);
         let imagesTemp = '';
         imagesArray.forEach(element => {

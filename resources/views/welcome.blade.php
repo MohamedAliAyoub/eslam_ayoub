@@ -212,29 +212,26 @@
             </div>
 
             <div class="col-12 mb-3 d-flex justify-content-center categoriesBar">
-                <button class="btn active filter"  data-id="0" data-value="{{$products}}" > الجميع</button>
+                <button class="btn active filter" data-id="0" data-value="{{$products}}"> الجميع</button>
                 @foreach($items as $item)
-                    <button class="btn filter" data-id="{{$item->id}}" data-value="{{$products}}"> {{$item->name}} </button>
+                    <button class="btn filter" data-id="{{$item->id}}"
+                            data-value="{{$products}}"> {{$item->name}} </button>
                 @endforeach
             </div>
             <div class="col-12">
-
                 <div class="owl-carousel" id="secondCarsual">
-
                     @foreach($products as $item)
-
                         <div class="mb-3 position-relative"
-                             onclick="openViewModal('{{$item->video}}',  '{{str_replace('\\', '\\\\', json_encode($item->images))}}', '{{$item->url}}')">
-
+                             onclick="openViewModal('{{$item->video}}',  '{{json_encode($item->images)}}', '{{$item->url}}')">
                             <div class="image position-relative overflow-hidden text-center"
                                  data-itemId="{{ $item->id }}">
 
-                              @if(isset($item->images[0]->image ))
-                                <img src="{{asset('storage/'.$item->images[0]->image) }}" alt="picture 1"
-                                     class="img-fluid">
+                                @if(isset($item->images[0]->image ))
+                                    <img src="{{asset('storage/'.$item->images[0]->image) }}" alt="picture 1"
+                                         class="img-fluid">
                                 @else
-                                <img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
-                                        class="img-fluid">
+                                    <img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
+                                         class="img-fluid">
                                 @endif
 
                                 <div class="img-card p-2 text-center w-75 m-auto position-absolute">
@@ -244,11 +241,8 @@
 
                             </div>
                         </div>
-
-
                     @endforeach
                 </div>
-
             </div>
 
 
@@ -348,20 +342,18 @@
         <div class="row justify-content-between align-items-center text-center">
 
             <div class="col-md-3 col-12">
-                 <a href="{{setting('site.whatsapp')}}"> <i
-                                    class="fa fa-whatsapp icon text-white"></i> </a>
-                            <a href="setting('site.behance')"> <i class="fa fa-behance   icon text-white"></i> </a>
-                            <a href="{{setting('site.footer_linkedin')}}"> <i
-                                    class="fa fa-linkedin icon text-white"></i> </a>
-                            <a href="setting('site.footer_tweter')"> <i class="fa fa-twitter  icon text-white"></i> </a>
+                <a href="{{setting('site.whatsapp')}}"> <i
+                        class="fa fa-whatsapp icon text-white"></i> </a>
+                <a href="setting('site.behance')"> <i class="fa fa-behance   icon text-white"></i> </a>
+                <a href="{{setting('site.footer_linkedin')}}"> <i
+                        class="fa fa-linkedin icon text-white"></i> </a>
+                <a href="setting('site.footer_tweter')"> <i class="fa fa-twitter  icon text-white"></i> </a>
             </div>
-            
-            
-            
+
 
             <div class="col-md-3 col-12">
-                <h6 class="text-white"> تم 
-                التصميم بواسطة <a href="http://eslamayoub.com/public/" class="designer">
+                <h6 class="text-white"> تم
+                    التصميم بواسطة <a href="http://eslamayoub.com/public/" class="designer">
                         اسلام ايوب </a></h6>
             </div>
 
@@ -402,37 +394,38 @@
         modal.find('.modal-body #item_id').val(item_id);
     });
 
+    function htmlEncode(html) {
+        if (html === undefined || html === null || html.length === 0)
+            return html;
+        return html.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+    }
+
     $('.filter').click(function () {
         let products = new Array();
         var product = $(this).data('value');
         var id = $(this).data('id');
-        if(id != 0){
-             products = product.filter(function( element){
-                    return element.service_id == id ;
+        if (id != 0) {
+            products = product.filter(function (element) {
+                return element.service_id == id;
             });
-        }else{
-            products = product ;  
+        } else {
+            products = product;
         }
         let productsTemp = "";
-        $('#secondCarsual').html("");
+        $('#secondCarsual').html('');
         products.forEach(element => {
-            productsTemp = `<div class="mb-3 position-relative"
-                onclick="openViewModal('${element.video}',  '${ JSON.stringify(element.images).replace('\\', '\\\\')}', '${element.url}')">
-                
-                <div class="image position-relative overflow-hidden text-center"
-                    data-itemId="${element.id}">`
-                if(element.images[0].image != ''){
-                    console.log(
-                     element.images[0].image
-                    )
-                    productsTemp += "<img src='http://127.0.0.1:8000/storage/"+element.images[0].image+"' alt='picture 1' class='img-fluid'>";
-                }
-                else{
-                    productsTemp += `<img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
+            productsTemp += `<div class="mb-3 position-relative" onclick="openViewModal('${htmlEncode(element.video)}',  '${htmlEncode(JSON.stringify(element.images))}', '${htmlEncode(element.url)}')"><div class="image position-relative overflow-hidden text-center" data-itemId="${element.id}">`
+            if (element.images[0].image !== '') {
+                console.log(
+                    element.images[0].image
+                )
+                productsTemp += "<img src='http://127.0.0.1:8000/storage/" + element.images[0].image + "' alt='picture 1' class='img-fluid'>";
+            } else {
+                productsTemp += `<img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
                     class="img-fluid">`
-                }
-                
-                productsTemp += `
+            }
+
+            productsTemp += `
                 <div class="img-card p-2 text-center w-75 m-auto position-absolute">
                     <h6 class="font-weight-bold"> ${element.name} </h6>
                     <small> ${element.service.name} </small>
@@ -440,7 +433,22 @@
                 </div>
                 </div>`;
         });
-        $('#secondCarsual').html(productsTemp);
+        $('#secondCarsual').owlCarousel('destroy').html(productsTemp).owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 4,
+                    nav: false
+                }
+            }
+        });
 
     });
 
