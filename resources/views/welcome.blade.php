@@ -212,9 +212,9 @@
             </div>
 
             <div class="col-12 mb-3 d-flex justify-content-center categoriesBar">
-                <button class="btn active"> الجميع</button>
+                <button class="btn active filter"  data-id="0" data-value="{{$products}}" > الجميع</button>
                 @foreach($items as $item)
-                    <button class="btn"> {{$item->name}} </button>
+                    <button class="btn filter" data-id="{{$item->id}}" data-value="{{$products}}"> {{$item->name}} </button>
                 @endforeach
             </div>
             <div class="col-12">
@@ -232,10 +232,10 @@
                               @if(isset($item->images[0]->image ))
                                 <img src="{{asset('storage/'.$item->images[0]->image) }}" alt="picture 1"
                                      class="img-fluid">
-                            @else
-                            <img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
-                                     class="img-fluid">
-                            @endif
+                                @else
+                                <img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
+                                        class="img-fluid">
+                                @endif
 
                                 <div class="img-card p-2 text-center w-75 m-auto position-absolute">
                                     <h6 class="font-weight-bold"> {{ $item->name }} </h6>
@@ -401,6 +401,49 @@
 
         modal.find('.modal-body #item_id').val(item_id);
     });
+
+    $('.filter').click(function () {
+        let products = new Array();
+        var product = $(this).data('value');
+        var id = $(this).data('id');
+        if(id != 0){
+             products = product.filter(function( element){
+                    return element.service_id == id ;
+            });
+        }else{
+            products = product ;  
+        }
+        let productsTemp = "";
+        $('#secondCarsual').html("");
+        products.forEach(element => {
+            productsTemp = `<div class="mb-3 position-relative"
+                onclick="openViewModal('${element.video}',  '${ JSON.stringify(element.images).replace('\\', '\\\\')}', '${element.url}')">
+                
+                <div class="image position-relative overflow-hidden text-center"
+                    data-itemId="${element.id}">`
+                if(element.images[0].image != ''){
+                    console.log(
+                     element.images[0].image
+                    )
+                    productsTemp += "<img src='http://127.0.0.1:8000/storage/"+element.images[0].image+"' alt='picture 1' class='img-fluid'>";
+                }
+                else{
+                    productsTemp += `<img src="{{asset('/storage/images/March2021/portfolio-1.jpg')}}" alt="picture 1"
+                    class="img-fluid">`
+                }
+                
+                productsTemp += `
+                <div class="img-card p-2 text-center w-75 m-auto position-absolute">
+                    <h6 class="font-weight-bold"> ${element.name} </h6>
+                    <small> ${element.service.name} </small>
+                </div>
+                </div>
+                </div>`;
+        });
+        $('#secondCarsual').html(productsTemp);
+
+    });
+
 </script>
 </body>
 </html>

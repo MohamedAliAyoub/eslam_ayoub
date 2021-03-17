@@ -14,21 +14,21 @@ $(document).ready(function () {
             $nav.removeClass('fixed-nav');
         }
 
-        if ($(this).scrollTop() > $(".numbers").offset().top - 500) {
-            $('.countfect').each(function () {
-                var $this = $(this), countTo = $this.attr('data-num');
-                $({countNum: $this.text()}).animate({countNum: countTo}, {
-                    duration: 8000,
-                    easing: 'linear',
-                    step: function () {
-                        $this.text(Math.floor(this.countNum));
-                    },
-                    complete: function () {
-                        $this.text(this.countNum);
-                    }
-                });
-            });
-        }
+        // if ($(this).scrollTop() > $(".numbers").offset().top - 500) {
+        //     $('.countfect').each(function () {
+        //         var $this = $(this), countTo = $this.attr('data-num');
+        //         $({countNum: $this.text()}).animate({countNum: countTo}, {
+        //             duration: 8000,
+        //             easing: 'linear',
+        //             step: function () {
+        //                 $this.text(Math.floor(this.countNum));
+        //             },
+        //             complete: function () {
+        //                 $this.text(this.countNum);
+        //             }
+        //         });
+        //     });
+        // }
         if (($(this).scrollTop() > $(".about").offset().top - 500) && aboutFirstView == false) {
             var typed = new Typed('#typed', {
                 stringsElement: '#typed-strings'
@@ -110,7 +110,7 @@ var openViewModal = (video, images, url) => {
         $('.projectVideoContainer').removeClass('d-none');
         $('.projectVideo').html(video);
     }
-    if (images !== 'null') {
+    if (images !== '') {
         $('.projectImagesContainer').removeClass('d-none');
 
         let imagesArray = JSON.parse(images);
@@ -139,7 +139,7 @@ var openViewModal = (video, images, url) => {
         //console.log($('.projectImagesContainer .owl-carousel .projectImage').html());
         // imagesTemp += `<div class=""><img src="${image}" alt="picture 1" class="img-fluid"></div>`;
     }
-    if (url !== 'null') {
+    if (url !== '') {
         $('.projectUrlContainer').removeClass('d-none');
         $('.projectLink').attr('href', url).text(url)
     }

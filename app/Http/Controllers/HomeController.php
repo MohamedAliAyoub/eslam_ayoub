@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     public function services (){
-        $products = Product::with('service' , 'images')->get();
+      $products = Product::with('service' , 'images')->get();
     //    dd(   json_decode(  setting('site.section_a_vedio' )  )[0]->download_link   );
     $video= json_decode(  setting('site.section_a_vedio' )  )[0]->download_link ;
     // dd(  $video  );
